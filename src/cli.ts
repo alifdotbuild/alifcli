@@ -119,11 +119,11 @@ async function apply(args: string[]): Promise<void> {
   console.log(`Primary metric: ${metricKey}`);
   console.log("");
   console.log("Update traction:");
-  console.log(`  npx alif metric update ${metricKey} 12000`);
+  console.log(`  npx @alifdotbuild/cli metric update ${metricKey} 12000`);
   console.log("");
   console.log("For agents/CI:");
   console.log(`  export ALIF_API_TOKEN=${response.token}`);
-  console.log(`  npx alif metric update ${metricKey} 12000 --source <agent-name>`);
+  console.log(`  npx @alifdotbuild/cli metric update ${metricKey} 12000 --source <agent-name>`);
   console.log("");
   console.log(`Credentials saved to ${configPath}`);
 }
@@ -260,7 +260,7 @@ async function setupAgent(args: string[]): Promise<void> {
   const metric = flags.metric ?? flags._[0] ?? "weekly_revenue";
 
   if (!token) {
-    throw new CliError("Missing agent token. Run `npx alif apply` first, or pass --token / ALIF_API_TOKEN.");
+    throw new CliError("Missing agent token. Run `npx @alifdotbuild/cli apply` first, or pass --token / ALIF_API_TOKEN.");
   }
 
   console.log(`Agent setup
@@ -269,7 +269,7 @@ Use this command from Codex, Claude Code, Hermes, CI, or cron:
 
 ALIF_API_URL=${apiUrl} \\
 ALIF_API_TOKEN=${token} \\
-npx alif metric update ${metric} <value> \\
+npx @alifdotbuild/cli metric update ${metric} <value> \\
   --timestamp <period_end_iso> \\
   --idempotency-key <company>-${metric}-<period> \\
   --source <agent-name>

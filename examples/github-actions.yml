@@ -19,6 +19,6 @@ jobs:
         run: |
           VALUE="12000"
           PERIOD="2026-W23"
-          npx alif metric update weekly_revenue "$VALUE" \
+          npx @alifdotbuild/cli metric update weekly_revenue "$VALUE" \
             --idempotency-key "acme-weekly-revenue-$PERIOD" \
             --source github-actions

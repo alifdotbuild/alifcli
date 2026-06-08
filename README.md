@@ -6,13 +6,13 @@ Alif CLI is for founders using Codex, Claude Code, Hermes, Cursor agents, CI, cr
 
 ## Quickstart
 
-Target public command after npm publishing:
+Target command after npm publishing:
 
 ```bash
-npx alif apply
+npx @alifdotbuild/cli apply
 ```
 
-Packaging note: the npm package name `alif` is currently owned by another publisher. Until that name is acquired or transferred, publish this package under a scoped name such as `@alif/cli` and run `npx @alif/cli apply`.
+Packaging note: the npm package name `alif` is currently owned by another publisher. If that name is acquired or transferred later, this can become `npx alif apply`.
 
 You can run directly from GitHub today:
 
@@ -23,7 +23,7 @@ npx github:alifdotbuild/alifcli apply
 Apply:
 
 ```bash
-npx alif apply
+npx @alifdotbuild/cli apply
 ```
 
 The CLI will:
@@ -37,19 +37,19 @@ The CLI will:
 Update traction:
 
 ```bash
-npx alif metric update weekly_revenue 12000
+npx @alifdotbuild/cli metric update weekly_revenue 12000
 ```
 
 Check status:
 
 ```bash
-npx alif status
+npx @alifdotbuild/cli status
 ```
 
 Generate an agent command:
 
 ```bash
-npx alif setup-agent weekly_revenue
+npx @alifdotbuild/cli setup-agent weekly_revenue
 ```
 
 ## Agent Usage
@@ -58,7 +58,7 @@ Agents and CI should use `ALIF_API_TOKEN`:
 
 ```bash
 ALIF_API_TOKEN=alif_live_... \
-npx alif metric update weekly_revenue 12000 \
+npx @alifdotbuild/cli metric update weekly_revenue 12000 \
   --timestamp 2026-06-07T16:00:00Z \
   --idempotency-key acme-weekly-revenue-2026-W23 \
   --source codex
@@ -77,13 +77,13 @@ Examples:
 ## Commands
 
 ```bash
-npx alif apply
-npx alif login --email founder@example.com
-npx alif status
-npx alif whoami
-npx alif setup-agent weekly_revenue
-npx alif metric create weekly_active_users --unit users --cadence weekly
-npx alif metric update weekly_revenue 12000
+npx @alifdotbuild/cli apply
+npx @alifdotbuild/cli login --email founder@example.com
+npx @alifdotbuild/cli status
+npx @alifdotbuild/cli whoami
+npx @alifdotbuild/cli setup-agent weekly_revenue
+npx @alifdotbuild/cli metric create weekly_active_users --unit users --cadence weekly
+npx @alifdotbuild/cli metric update weekly_revenue 12000
 ```
 
 ## Hosted API
@@ -97,7 +97,7 @@ https://alif-api.imuthuvappa.workers.dev
 Override it when developing or self-hosting:
 
 ```bash
-ALIF_API_URL=http://localhost:8787 npx alif apply
+ALIF_API_URL=http://localhost:8787 npx @alifdotbuild/cli apply
 ```
 
 ## Local Development
@@ -112,7 +112,7 @@ npm run dev
 In another terminal:
 
 ```bash
-node dist/cli.js apply --api-url http://localhost:8787
+npm exec -- alif apply --api-url http://localhost:8787
 ```
 
 ## Docs
