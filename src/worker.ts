@@ -249,6 +249,10 @@ async function startEmailOtp(request: Request, env: Env): Promise<Response> {
   ).bind(otpId, email, await sha256(`${email}:${code}`), expiresAt).run();
 
   const sent = await sendOtpEmail(env, email, code);
+  if (!sent && env.ALIF_ENV === "production") {
+    throw new HttpError(500, "otp_email_not_configured", "Email OTP delivery is not configured.");
+  }
+
   await env.DB.prepare(
     `INSERT INTO audit_log (id, actor, action, resource_type, resource_id, metadata_json)
      VALUES (?, ?, 'auth.otp.started', 'email_otp', ?, ?)`

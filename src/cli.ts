@@ -77,6 +77,7 @@ async function apply(args: string[]): Promise<void> {
   const founderName = flags["founder-name"] ?? await ask(rl, "Founder name");
   const oneLiner = flags["one-liner"] ?? await ask(rl, "One-liner");
   const metricKey = flags["metric-key"] ?? await ask(rl, "Primary metric key", "weekly_revenue");
+  const metricCommandKey = slug(metricKey);
   const metricUnit = flags["metric-unit"] ?? await ask(rl, "Primary metric unit", "usd");
   rl.close();
 
@@ -116,14 +117,14 @@ async function apply(args: string[]): Promise<void> {
   console.log("Application submitted.");
   console.log(`Application: ${response.application_id}`);
   console.log(`Company: ${response.company_id}`);
-  console.log(`Primary metric: ${metricKey}`);
+  console.log(`Primary metric: ${metricCommandKey}`);
   console.log("");
   console.log("Update traction:");
-  console.log(`  npx alif-fund metric update ${metricKey} 12000`);
+  console.log(`  npx alif-fund metric update ${metricCommandKey} 12000`);
   console.log("");
   console.log("For agents/CI:");
   console.log(`  export ALIF_API_TOKEN=${response.token}`);
-  console.log(`  npx alif-fund metric update ${metricKey} 12000 --source <agent-name>`);
+  console.log(`  npx alif-fund metric update ${metricCommandKey} 12000 --source <agent-name>`);
   console.log("");
   console.log(`Credentials saved to ${configPath}`);
 }
@@ -432,6 +433,10 @@ function parseFlags(args: string[]): ParsedFlags {
 
 function titleize(value: string): string {
   return value.replace(/[_-]+/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function slug(value: string): string {
+  return value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
 }
 
 function printHelp(): void {
