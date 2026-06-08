@@ -14,6 +14,12 @@ npx alif apply
 
 Packaging note: the npm package name `alif` is currently owned by another publisher. Until that name is acquired or transferred, publish this package under a scoped name such as `@alif/cli` and run `npx @alif/cli apply`.
 
+You can run directly from GitHub today:
+
+```bash
+npx github:imranye/alifcli apply
+```
+
 Apply:
 
 ```bash

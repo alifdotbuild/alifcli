@@ -4,6 +4,14 @@
   "description": "Apply to Alif from your terminal and let agents update traction metrics.",
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imranye/alifcli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/imranye/alifcli/issues"
+  },
+  "homepage": "https://github.com/imranye/alifcli#readme",
   "bin": {
     "alif": "./dist/cli.js"
   },
