@@ -58,5 +58,5 @@ npx wrangler secret put SIGNUP_SECRET
 Then pass it during application creation:
 
 ```bash
-ALIF_SIGNUP_SECRET=... npx @alifdotbuild/cli apply --api-url https://your-worker.example.workers.dev
+ALIF_SIGNUP_SECRET=... npx alif-fund apply --api-url https://your-worker.example.workers.dev
 ```

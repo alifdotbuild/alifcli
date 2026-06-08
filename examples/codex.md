@@ -12,7 +12,7 @@ Prompt:
 Calculate last week's weekly_revenue from the source of truth. Then run:
 
 ALIF_API_TOKEN=$ALIF_API_TOKEN \
-npx @alifdotbuild/cli metric update weekly_revenue <value> \
+npx alif-fund metric update weekly_revenue <value> \
   --timestamp <period_end_iso> \
   --idempotency-key <company>-weekly-revenue-<iso-week> \
   --source codex

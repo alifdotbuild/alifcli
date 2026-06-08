@@ -12,7 +12,7 @@ Prompt:
 Read our analytics/revenue source and submit weekly_revenue to Alif.
 Use:
 
-npx @alifdotbuild/cli metric update weekly_revenue <value> \
+npx alif-fund metric update weekly_revenue <value> \
   --timestamp <period_end_iso> \
   --idempotency-key <company>-weekly-revenue-<iso-week> \
   --source claude-code

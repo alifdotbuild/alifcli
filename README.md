@@ -9,10 +9,10 @@ Alif CLI is for founders using Codex, Claude Code, Hermes, Cursor agents, CI, cr
 Target command after npm publishing:
 
 ```bash
-npx @alifdotbuild/cli apply
+npx alif-fund apply
 ```
 
-Packaging note: the npm package name `alif` is currently owned by another publisher. If that name is acquired or transferred later, this can become `npx alif apply`.
+Packaging note: npm package names use the normal ASCII hyphen, so the package is `alif-fund`.
 
 You can run directly from GitHub today:
 
@@ -23,7 +23,7 @@ npx github:alifdotbuild/alifcli apply
 Apply:
 
 ```bash
-npx @alifdotbuild/cli apply
+npx alif-fund apply
 ```
 
 The CLI will:
@@ -37,19 +37,19 @@ The CLI will:
 Update traction:
 
 ```bash
-npx @alifdotbuild/cli metric update weekly_revenue 12000
+npx alif-fund metric update weekly_revenue 12000
 ```
 
 Check status:
 
 ```bash
-npx @alifdotbuild/cli status
+npx alif-fund status
 ```
 
 Generate an agent command:
 
 ```bash
-npx @alifdotbuild/cli setup-agent weekly_revenue
+npx alif-fund setup-agent weekly_revenue
 ```
 
 ## Agent Usage
@@ -58,7 +58,7 @@ Agents and CI should use `ALIF_API_TOKEN`:
 
 ```bash
 ALIF_API_TOKEN=alif_live_... \
-npx @alifdotbuild/cli metric update weekly_revenue 12000 \
+npx alif-fund metric update weekly_revenue 12000 \
   --timestamp 2026-06-07T16:00:00Z \
   --idempotency-key acme-weekly-revenue-2026-W23 \
   --source codex
@@ -77,13 +77,13 @@ Examples:
 ## Commands
 
 ```bash
-npx @alifdotbuild/cli apply
-npx @alifdotbuild/cli login --email founder@example.com
-npx @alifdotbuild/cli status
-npx @alifdotbuild/cli whoami
-npx @alifdotbuild/cli setup-agent weekly_revenue
-npx @alifdotbuild/cli metric create weekly_active_users --unit users --cadence weekly
-npx @alifdotbuild/cli metric update weekly_revenue 12000
+npx alif-fund apply
+npx alif-fund login --email founder@example.com
+npx alif-fund status
+npx alif-fund whoami
+npx alif-fund setup-agent weekly_revenue
+npx alif-fund metric create weekly_active_users --unit users --cadence weekly
+npx alif-fund metric update weekly_revenue 12000
 ```
 
 ## Hosted API
@@ -97,7 +97,7 @@ https://alif-api.imuthuvappa.workers.dev
 Override it when developing or self-hosting:
 
 ```bash
-ALIF_API_URL=http://localhost:8787 npx @alifdotbuild/cli apply
+ALIF_API_URL=http://localhost:8787 npx alif-fund apply
 ```
 
 ## Local Development
@@ -112,7 +112,7 @@ npm run dev
 In another terminal:
 
 ```bash
-npm exec -- alif apply --api-url http://localhost:8787
+npm exec -- alif-fund apply --api-url http://localhost:8787
 ```
 
 ## Docs

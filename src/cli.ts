@@ -119,11 +119,11 @@ async function apply(args: string[]): Promise<void> {
   console.log(`Primary metric: ${metricKey}`);
   console.log("");
   console.log("Update traction:");
-  console.log(`  npx @alifdotbuild/cli metric update ${metricKey} 12000`);
+  console.log(`  npx alif-fund metric update ${metricKey} 12000`);
   console.log("");
   console.log("For agents/CI:");
   console.log(`  export ALIF_API_TOKEN=${response.token}`);
-  console.log(`  npx @alifdotbuild/cli metric update ${metricKey} 12000 --source <agent-name>`);
+  console.log(`  npx alif-fund metric update ${metricKey} 12000 --source <agent-name>`);
   console.log("");
   console.log(`Credentials saved to ${configPath}`);
 }
@@ -260,7 +260,7 @@ async function setupAgent(args: string[]): Promise<void> {
   const metric = flags.metric ?? flags._[0] ?? "weekly_revenue";
 
   if (!token) {
-    throw new CliError("Missing agent token. Run `npx @alifdotbuild/cli apply` first, or pass --token / ALIF_API_TOKEN.");
+    throw new CliError("Missing agent token. Run `npx alif-fund apply` first, or pass --token / ALIF_API_TOKEN.");
   }
 
   console.log(`Agent setup
@@ -269,7 +269,7 @@ Use this command from Codex, Claude Code, Hermes, CI, or cron:
 
 ALIF_API_URL=${apiUrl} \\
 ALIF_API_TOKEN=${token} \\
-npx @alifdotbuild/cli metric update ${metric} <value> \\
+npx alif-fund metric update ${metric} <value> \\
   --timestamp <period_end_iso> \\
   --idempotency-key <company>-${metric}-<period> \\
   --source <agent-name>
@@ -435,20 +435,20 @@ function titleize(value: string): string {
 }
 
 function printHelp(): void {
-  console.log(`alif
+  console.log(`alif-fund
 
 Usage:
-  alif apply
-  alif login [--email founder@example.com]
-  alif status
-  alif whoami
-  alif setup-agent [metric_key]
-  alif metric create <key> [--unit count] [--cadence weekly]
-  alif metric update <key> <value> [--timestamp ISO_DATE] [--source agent]
+  alif-fund apply
+  alif-fund login [--email founder@example.com]
+  alif-fund status
+  alif-fund whoami
+  alif-fund setup-agent [metric_key]
+  alif-fund metric create <key> [--unit count] [--cadence weekly]
+  alif-fund metric update <key> <value> [--timestamp ISO_DATE] [--source agent]
 
 Automation:
   ALIF_API_TOKEN=alif_live_... \\
-    alif metric update weekly_revenue 12000
+    alif-fund metric update weekly_revenue 12000
 `);
 }
 

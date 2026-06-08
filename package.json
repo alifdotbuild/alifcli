@@ -1,5 +1,5 @@
 {
-  "name": "@alifdotbuild/cli",
+  "name": "alif-fund",
   "version": "0.1.0",
   "description": "Apply to Alif from your terminal and let agents update traction metrics.",
   "license": "MIT",
@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/alifdotbuild/alifcli#readme",
   "bin": {
-    "alif": "dist/cli.js"
+    "alif-fund": "dist/cli.js"
   },
   "files": [
     "dist",
