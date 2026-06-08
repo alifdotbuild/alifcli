@@ -1,0 +1,16 @@
+---
+description: Alif Fund CLI project rules
+globs:
+  - "**/*"
+alwaysApply: true
+---
+
+Follow `AGENTS.md` as the source of truth.
+
+Keep the founder-facing command as:
+
+```bash
+npx alif-fund apply
+```
+
+Use Cloudflare Worker + D1 + Queues patterns already present in the repo. Keep README short and move operator detail to `docs/`.

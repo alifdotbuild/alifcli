@@ -24,6 +24,10 @@
     "docs",
     "examples",
     "README.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "CODEX.md",
+    "HERMES.md",
     "LICENSE",
     "wrangler.jsonc"
   ],
