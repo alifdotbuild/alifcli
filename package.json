@@ -6,12 +6,12 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/imranye/alifcli.git"
+    "url": "git+https://github.com/alifdotbuild/alifcli.git"
   },
   "bugs": {
-    "url": "https://github.com/imranye/alifcli/issues"
+    "url": "https://github.com/alifdotbuild/alifcli/issues"
   },
-  "homepage": "https://github.com/imranye/alifcli#readme",
+  "homepage": "https://github.com/alifdotbuild/alifcli#readme",
   "bin": {
     "alif": "./dist/cli.js"
   },

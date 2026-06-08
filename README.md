@@ -17,7 +17,7 @@ Packaging note: the npm package name `alif` is currently owned by another publis
 You can run directly from GitHub today:
 
 ```bash
-npx github:imranye/alifcli apply
+npx github:alifdotbuild/alifcli apply
 ```
 
 Apply:
