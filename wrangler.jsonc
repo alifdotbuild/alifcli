@@ -1,0 +1,35 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "alif-api",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-06-01",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "alif-db",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+    }
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "METRIC_QUEUE",
+        "queue": "alif-metric-events"
+      }
+    ],
+    "consumers": [
+      {
+        "queue": "alif-metric-events",
+        "max_batch_size": 10,
+        "max_batch_timeout": 5
+      }
+    ]
+  },
+  "triggers": {
+    "crons": ["*/30 * * * *"]
+  },
+  "vars": {
+    "ALIF_ENV": "development",
+    "REQUIRE_EMAIL_OTP": "false"
+  }
+}

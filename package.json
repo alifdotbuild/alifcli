@@ -1,0 +1,38 @@
+{
+  "name": "alif",
+  "version": "0.1.0",
+  "description": "Apply to Alif from your terminal and let agents update traction metrics.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "alif": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "migrations",
+    "docs",
+    "examples",
+    "README.md",
+    "LICENSE",
+    "wrangler.jsonc"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepack": "npm run build",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:migrate:local": "wrangler d1 migrations apply alif-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply alif-db --remote",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260605.0",
+    "@types/node": "^22.15.29",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.19.1"
+  }
+}

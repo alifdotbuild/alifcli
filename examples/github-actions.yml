@@ -1,0 +1,24 @@
+name: Update Alif Metric
+
+on:
+  schedule:
+    - cron: "0 16 * * 1"
+  workflow_dispatch:
+
+jobs:
+  update-alif:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Calculate and submit metric
+        env:
+          ALIF_API_TOKEN: ${{ secrets.ALIF_API_TOKEN }}
+        run: |
+          VALUE="12000"
+          PERIOD="2026-W23"
+          npx alif metric update weekly_revenue "$VALUE" \
+            --idempotency-key "acme-weekly-revenue-$PERIOD" \
+            --source github-actions
