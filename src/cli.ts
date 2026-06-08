@@ -69,6 +69,8 @@ async function apply(args: string[]): Promise<void> {
   const existing = await loadConfig();
   const rl = createInterface({ input, output });
 
+  printSplash(flags);
+
   const apiUrl = flags["api-url"] ?? process.env.ALIF_API_URL ?? existing.apiUrl ?? defaultApiUrl;
   const founderEmail = (flags["founder-email"] ?? existing.email ?? await ask(rl, "Founder email")).toLowerCase();
   const sessionConfig = await ensureSession({ apiUrl, email: founderEmail, flags, existing, rl });
@@ -123,8 +125,10 @@ async function apply(args: string[]): Promise<void> {
   console.log(`  npx alif-fund metric update ${metricCommandKey} 12000`);
   console.log("");
   console.log("For agents/CI:");
-  console.log(`  export ALIF_API_TOKEN=${response.token}`);
-  console.log(`  npx alif-fund metric update ${metricCommandKey} 12000 --source <agent-name>`);
+  console.log(`  npx alif-fund setup-agent ${metricCommandKey}`);
+  console.log("");
+  console.log("To print the raw token for CI setup:");
+  console.log(`  npx alif-fund setup-agent ${metricCommandKey} --show-token`);
   console.log("");
   console.log(`Credentials saved to ${configPath}`);
 }
@@ -133,6 +137,8 @@ async function login(args: string[]): Promise<void> {
   const flags = parseFlags(args);
   const existing = await loadConfig();
   const rl = createInterface({ input, output });
+
+  printSplash(flags);
 
   const apiUrl = flags["api-url"] ?? process.env.ALIF_API_URL ?? existing.apiUrl ?? defaultApiUrl;
   const email = (flags.email ?? existing.email ?? await ask(rl, "Email")).toLowerCase();
@@ -264,12 +270,19 @@ async function setupAgent(args: string[]): Promise<void> {
     throw new CliError("Missing agent token. Run `npx alif-fund apply` first, or pass --token / ALIF_API_TOKEN.");
   }
 
+  const tokenValue = flags["show-token"] === "true" ? token : "$ALIF_API_TOKEN";
+  const tokenSetup = flags["show-token"] === "true"
+    ? `export ALIF_API_TOKEN=${token}`
+    : "export ALIF_API_TOKEN=<your alif_live token>";
+
   console.log(`Agent setup
+
+${tokenSetup}
 
 Use this command from Codex, Claude Code, Hermes, CI, or cron:
 
 ALIF_API_URL=${apiUrl} \\
-ALIF_API_TOKEN=${token} \\
+ALIF_API_TOKEN=${tokenValue} \\
 npx alif-fund metric update ${metric} <value> \\
   --timestamp <period_end_iso> \\
   --idempotency-key <company>-${metric}-<period> \\
@@ -278,6 +291,8 @@ npx alif-fund metric update ${metric} <value> \\
 Suggested agent instruction:
 
 Calculate ${metric} from the source of truth for the reporting period. Then run the command above with a stable idempotency key for that period. If the command fails transiently, retry with the same idempotency key.
+
+Tip: rerun with --show-token only when you are setting up a local secret store or CI secret.
 `);
 }
 
@@ -437,6 +452,15 @@ function titleize(value: string): string {
 
 function slug(value: string): string {
   return value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+}
+
+function printSplash(flags: ParsedFlags): void {
+  if (flags["no-splash"] === "true" || !process.stdout.isTTY) return;
+
+  console.log(`\nALIF FUND
+agent-native venture applications
+
+Apply once. Let your agent update traction.\n`);
 }
 
 function printHelp(): void {

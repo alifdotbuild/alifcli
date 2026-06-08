@@ -50,6 +50,7 @@ npm run dev
 - Use the ASCII package name and command `alif-fund`; do not use an en dash.
 - Preserve separation between human sessions (`alif_session_...`) and agent tokens (`alif_live_...`).
 - Never commit raw tokens, OTPs, API keys, or `.dev.vars`.
+- Do not print raw `alif_live_...` values in docs, issues, or final answers unless the user explicitly asks for secret setup output.
 - Keep docs and examples consistent with the current npm command: `npx alif-fund ...`.
 - Run `npm run typecheck` after TypeScript changes.
 - Run `npm pack --dry-run` after package metadata or README changes.

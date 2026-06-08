@@ -52,6 +52,12 @@ Generate an agent command:
 npx alif-fund setup-agent weekly_revenue
 ```
 
+Print the raw token only when setting up a CI secret or local secret store:
+
+```bash
+npx alif-fund setup-agent weekly_revenue --show-token
+```
+
 ## Agent Usage
 
 Agents and CI should use `ALIF_API_TOKEN`:
@@ -65,6 +71,8 @@ npx alif-fund metric update weekly_revenue 12000 \
 ```
 
 Use the same idempotency key when retrying the same reporting period. Duplicate retries are ignored.
+
+Do not paste raw `alif_live_...` tokens into issues, chats, docs, or commits.
 
 Examples:
 
